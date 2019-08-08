@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Meet with Sasha</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.videoContainer {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
+.videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+
+</style>
+
+<body>
+<div class="container">
+
+  <div class="row">
+  	<div class="col-12">
+    	<h1>Meet with Sasha!</h1>
+    </div>
+  </div>
+
+  <div class="jumbotron">
+  	<div class="videoContainer">
+    	<video autoplay="true" class="videoElement"></video>
+    </div>
+  </div>
+
+  <div>
+
+  <div class="row">
+  	<div class="col-2 offset-2">
+	  	<div class="apixu-weather-forecast-day">
+	  		<div class="apixu - weather - forecast - day - abbr">Fri</div>
+	  		<div class="apixu-weather-forecast-day-abbr">
+	  			<div class=""><img src="https://cdn.apixu.com/weather/64x64/day/116.png" alt="Partly cloudy" title="Partly cloudy"></div>
+	  			<!-- /.apixu-weather-todays-stats -->
+	  		</div>
+	  		<div class="apixu - weather - forecast - day - temp">18.3<span> °C</span></div>
+	  	</div>
+	  </div>
+  	<div class="col-4">
+	  	<div class="list-group" id="audioSelector">
+		  <button type="button" class="list-group-item list-group-item-action active">Speakers</button>
+		  <button type="button" class="list-group-item list-group-item-action">Headphones</button>
+		</div>
+	</div>
+
+  	<div class="col-4">
+
+  	</div>
+</div>
+  </div>
+
+    <div class="jumbotron">
+  	<div class="videoContainer">
+    	<video autoplay="true" class="videoElement"></video>
+    </div>
+  </div>
+
+
+</div><!-- /.container -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script></body>
+<script>
+$.ajax('https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22', function(res) {
+	console.log(res);
+})
+
+$('#audioSelector button').click(function(e) {
+	$('#audioSelector button').removeClass('active');
+	$(e.target).addClass('active')
+})
+
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+
+</script>
+</html>
